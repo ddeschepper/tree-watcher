@@ -1,0 +1,19 @@
+{
+	"name": "tree-watcher",
+	"description": "Recursive file tree watcher",
+	"tags": ["watch", "fs"],
+	"version": "0.1.0",
+	"homepage": "https://github.com/daanlib/tree-watcher",
+	"bugs": {
+		"url": "https://github.com/daanlib/tree-watcher/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/daanlib/tree-watcher.git"
+	},
+	"author" : "Daan de Schepper <daan@daandeschepper.nl>",
+	"engines" : {
+		"node": ">= 0.6.5"
+	},
+	"main" : "tree-watcher"
+}
