@@ -10,6 +10,8 @@ Features include
 -   Throttling change events (tree-watchers keeps track of the event/path combinations that get fired and adds the possibility to throttle these, to prevent a large number of the events firing for a single change)
 -   filter out directory names that dont need to be watched (by adding a filter function)
 
+warning: watching many directories is no problem, but attaching all the listeners can potentially take some time.
+
 USAGE
 -----
 
@@ -33,10 +35,15 @@ USAGE
     });
     
     //the callback is fired when all the (sub)directories are being watched
-    watcher.watch("i:\\", function(err, watcher) {
+    watcher.watch("C:\\myDir", function(err, watcher) {
         if(err) {
             console.log("ERROR: " + err);
         } else {
             console.log("DONE");
         }
     });
+    
+    //add more directories to watch
+    watcher.watch("C:\\myOtherDir", function() {
+        ...
+    })

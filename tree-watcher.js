@@ -3,6 +3,7 @@ var fs = require("fs"),
 	util = require("util"),
 	events = require("events");
 
+//default filename filter function
 function filter(filename) {
 	return true;
 }
@@ -14,6 +15,7 @@ function createCallback(watcher, directory) {
 		
 		watcher.watch(p);
 		
+		//check if throttling is needed, else just emit the event
 		if(watcher.throttle > 0) {
 			watcher._throttling[p] = watcher._throttling[p] || {};
 			if(watcher._throttling[p][event]) {
@@ -28,18 +30,20 @@ function createCallback(watcher, directory) {
 	}
 }
 
+//donstructor only sets some defaults and some private properties
 function Watcher(options) {
 	var me = this;
 	
+	//used to save watchers, so directories are only watched once by a Watcher
 	me._watchers = {};
+	//used to save a map that poits to a timeout id, used for throttling (e.g: me._throttling["C:\\myDir"].rename)
 	me._throttling = {};
 	
-	//call super constructor
+	//call super constructor, to extend EventEmitter
 	events.EventEmitter.call(me);
 	
-	//fix arguments
+	//set some default options
 	options = options || {};
-	
 	this.filter = options.filter || filter;
 	this.throttle = options.throttle || 0;
 };
@@ -56,11 +60,12 @@ Watcher.prototype.watch = function(directory, callback) {
 			return callback ? callback(err, me) : false;
 		}
 		
-		//if the directory is not already being watched by this watcher
+		//if the directory is not already being watched by this watcher, watch it
 		if(!me._watchers[directory]) {
 			me._watchers[directory] = fs.watch(directory, createCallback(me, directory));
 		}
 		
+		//keep track of the state so we can call the callback function when all listeners are attached
 		var pending = files.length;
 		
 		if(!pending) {
@@ -85,4 +90,5 @@ Watcher.prototype.watch = function(directory, callback) {
 	});
 };
 
+//expose the Watcher constructor function
 exports.Watcher = Watcher;

@@ -2,7 +2,7 @@
 	"name": "tree-watcher",
 	"description": "Recursive file tree watcher",
 	"tags": ["watch", "fs"],
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"homepage": "https://github.com/daanlib/tree-watcher",
 	"bugs": {
 		"url": "https://github.com/daanlib/tree-watcher/issues"
