@@ -90,5 +90,11 @@ Watcher.prototype.watch = function(directory, callback) {
 	});
 };
 
+Watcher.prototype.close = function() {
+	Object.keys(this._watchers).forEach(function closeEachWatcher(key) {
+		this._watchers[key].close();
+	});
+}
+
 //expose the Watcher constructor function
 exports.Watcher = Watcher;
