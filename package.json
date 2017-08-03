@@ -3,13 +3,13 @@
 	"description": "Recursive file tree watcher",
 	"tags": ["watch", "fs"],
 	"version": "0.2.3",
-	"homepage": "https://github.com/stoudenmire/tree-watcher",
+	"homepage": "https://github.com/ddeschepper/tree-watcher",
 	"bugs": {
-		"url": "https://github.com/stoudenmire/tree-watcher/issues"
+		"url": "https://github.com/ddeschepper/tree-watcher/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/stoudenmire/tree-watcher.git"
+		"url": "git://github.com/ddeschepper/tree-watcher.git"
 	},
 	"author" : "Daan de Schepper <daan@daandeschepper.nl>",
 	"engines" : {
